@@ -1,6 +1,7 @@
 package com.carlesramos.notasaalumnos.parsers;
 
 import android.content.Context;
+import android.util.JsonToken;
 
 import com.carlesramos.notasaalumnos.R;
 import com.carlesramos.notasaalumnos.modelo.Alumne;
@@ -18,16 +19,10 @@ public class AlumneParser {
     private Alumne[] alumnes;
     private Assignatura[] assignatures;
     private InputStream alumnesFile;
-    private InputStream assignaturesFile;
     private HashMap<Assignatura,Double> mapaCalificaciones;
-    private AssignaturaParser assignaturaParser;
 
     public AlumneParser(Context c) {
         this.alumnesFile = c.getResources().openRawResource(R.raw.alumnos_notas);
-        assignaturaParser = new AssignaturaParser(c);
-        if(assignaturaParser.parse()) {
-            assignatures = assignaturaParser.getAsignatures();
-        }
     }
 
     public boolean parse(){
@@ -35,10 +30,12 @@ public class AlumneParser {
         boolean parsed = false;
         String json;
         alumnes = null;
+        assignatures = null;
         mapaCalificaciones = null;
 
         try {
             int size = alumnesFile.available();
+            //alumnes
             byte[] buffer = new byte[size];
             alumnesFile.read(buffer);
             alumnesFile.close();
@@ -46,7 +43,6 @@ public class AlumneParser {
             JSONTokener jsonTokener = new JSONTokener(json);
             JSONArray jsonArray = new JSONArray(jsonTokener);
             alumnes = new Alumne[jsonArray.length()];
-
             for (int i=0; i<alumnes.length; i++){
                 JSONObject jsonAlumne = jsonArray.getJSONObject(i);
                 int nia = jsonAlumne.getInt("nia");
@@ -56,6 +52,7 @@ public class AlumneParser {
                 String fechaNac = jsonAlumne.getString("fechanacimiento");
                 String email = jsonAlumne.getString("email");
                 JSONArray jsonArrayNotas = jsonAlumne.getJSONArray("notas");
+                //recorrem les calificacions
                 for (int z=0; z<jsonArrayNotas.length(); z++){
                     JSONObject jsonNotas = jsonArrayNotas.getJSONObject(z);
                     double nota = jsonNotas.getDouble("calificacion");

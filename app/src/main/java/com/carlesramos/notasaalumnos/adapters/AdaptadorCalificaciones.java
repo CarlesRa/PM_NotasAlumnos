@@ -4,16 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.carlesramos.notasaalumnos.IAlumneListener;
 import com.carlesramos.notasaalumnos.R;
 import com.carlesramos.notasaalumnos.modelo.Alumne;
 import com.carlesramos.notasaalumnos.modelo.Assignatura;
 
-import java.util.HashMap;
 
 public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalificaciones.CalificacionesViewHolder> {
     private Alumne[] alumnes;
@@ -35,9 +32,10 @@ public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalif
     @Override
     public void onBindViewHolder(@NonNull CalificacionesViewHolder holder, int position) {
         Alumne alumne = alumnes[position];
-        for (int i=0; i<assignatures.length; i++) {
-            holder.bindCalificaciones(alumne, i);
-        }
+        Assignatura[] assignatures = (Assignatura[])alumne.getCalificacions().keySet().toArray();
+
+        holder.bindCalificaciones(assignatures);
+
     }
 
     @Override
@@ -60,12 +58,14 @@ public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalif
         }
 
         public void bindCalificaciones(Alumne a, int position){
-            assignatures = (Assignatura[])a.getCalificacions().keySet().toArray();
+
             tvCodAsig.setText(assignatures[position].getCodAssignatura());
             tvNomAsig.setText(assignatures[position].getNomAssignatura());
             tvNomAsig.setText(String.valueOf(a.getCalificacions()
                     .get(assignatures[position].getCodAssignatura())));
         }
+
+
 
     }
 }
