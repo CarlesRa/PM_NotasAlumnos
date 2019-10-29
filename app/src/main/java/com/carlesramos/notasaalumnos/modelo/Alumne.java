@@ -3,7 +3,6 @@ package com.carlesramos.notasaalumnos.modelo;
 import com.carlesramos.notasaalumnos.utils.Lib;
 
 import java.io.Serializable;
-import java.util.HashMap;
 
 public class Alumne implements Serializable {
     private int nia;
@@ -13,17 +12,17 @@ public class Alumne implements Serializable {
     private String fechaNac;
     private int edad;
     private String email;
-    private HashMap<Assignatura,Double>calificacions;
+    private Calificacion[] calificaciones;
 
     public Alumne(int nia, String nom, String apellido1, String apellido2, String fechaNac
-            , String email, HashMap<Assignatura,Double> calificacions) {
+            , String email, Calificacion[] calificaciones) {
         this.nia = nia;
         this.nom = nom;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.fechaNac = fechaNac;
         this.email = email;
-        this.calificacions = calificacions;
+        this.calificaciones = calificaciones;
         edad = Lib.calcularEdat(this.fechaNac);
     }
 
@@ -55,7 +54,7 @@ public class Alumne implements Serializable {
         return email;
     }
 
-    public HashMap<Assignatura, Double> getCalificacions() {
-        return calificacions;
+    public Calificacion[] getCalificaciones(){
+        return calificaciones;
     }
 }

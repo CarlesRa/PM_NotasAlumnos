@@ -1,11 +1,11 @@
 package com.carlesramos.notasaalumnos.modelo;
 
-public class Calificaciones {
+public class Calificacion {
     private String codAssignatura;
     private String nomAssignatura;
-    private int notaAlumno;
+    private double notaAlumno;
 
-    public Calificaciones(String codAssignatura, String nomAssignatura, int notaAlumno) {
+    public Calificacion(String codAssignatura, String nomAssignatura, double notaAlumno) {
         this.codAssignatura = codAssignatura;
         this.nomAssignatura = nomAssignatura;
         this.notaAlumno = notaAlumno;
@@ -19,7 +19,7 @@ public class Calificaciones {
         return nomAssignatura;
     }
 
-    public int getNotaAlumno() {
+    public double getNotaAlumno() {
         return notaAlumno;
     }
 }

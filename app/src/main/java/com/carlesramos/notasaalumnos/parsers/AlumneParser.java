@@ -1,25 +1,22 @@
 package com.carlesramos.notasaalumnos.parsers;
 
 import android.content.Context;
-import android.util.JsonToken;
-
 import com.carlesramos.notasaalumnos.R;
 import com.carlesramos.notasaalumnos.modelo.Alumne;
 import com.carlesramos.notasaalumnos.modelo.Assignatura;
+import com.carlesramos.notasaalumnos.modelo.Calificacion;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 
 public class AlumneParser {
     private Alumne[] alumnes;
+    private Calificacion[] calificaciones;
     private Assignatura[] assignatures;
     private InputStream alumnesFile;
-    private HashMap<Assignatura,Double> mapaCalificaciones;
 
     public AlumneParser(Context c) {
         this.alumnesFile = c.getResources().openRawResource(R.raw.alumnos_notas);
@@ -31,11 +28,11 @@ public class AlumneParser {
         String json;
         alumnes = null;
         assignatures = null;
-        mapaCalificaciones = null;
+        calificaciones = null;
 
         try {
-            int size = alumnesFile.available();
             //alumnes
+            int size = alumnesFile.available();
             byte[] buffer = new byte[size];
             alumnesFile.read(buffer);
             alumnesFile.close();
@@ -54,13 +51,14 @@ public class AlumneParser {
                 JSONArray jsonArrayNotas = jsonAlumne.getJSONArray("notas");
                 //recorrem les calificacions
                 for (int z=0; z<jsonArrayNotas.length(); z++){
+
                     JSONObject jsonNotas = jsonArrayNotas.getJSONObject(z);
                     double nota = jsonNotas.getDouble("calificacion");
                     String codAsig = jsonNotas.getString("codAsig");
-                    mapaCalificaciones.put(assignatures[posicionAssignatura(codAsig)],nota);
+                    calificaciones[i] = new Calificacion(codAsig,nombre,nota);
                 }
                 alumnes[i] = new Alumne(nia,nombre,apellido1,apellido2,
-                        fechaNac,email,mapaCalificaciones);
+                        fechaNac,email,calificaciones);
             }
             parsed = true;
         } catch (IOException e) {
