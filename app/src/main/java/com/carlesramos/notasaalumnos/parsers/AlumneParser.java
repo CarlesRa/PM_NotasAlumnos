@@ -3,6 +3,7 @@ package com.carlesramos.notasaalumnos.parsers;
 import android.content.Context;
 import com.carlesramos.notasaalumnos.R;
 import com.carlesramos.notasaalumnos.modelo.Alumne;
+import com.carlesramos.notasaalumnos.modelo.Assignatura;
 import com.carlesramos.notasaalumnos.modelo.Calificacion;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 public class AlumneParser {
     private Alumne[] alumnes;
+    private Assignatura[] asignatures;
     private ArrayList<Calificacion> calificaciones;
     private InputStream alumnesFile;
 
@@ -25,7 +27,6 @@ public class AlumneParser {
 
         boolean parsed = false;
         String json;
-
         try {
             //alumne
             int size = alumnesFile.available();
@@ -35,6 +36,7 @@ public class AlumneParser {
             JSONTokener jsonTokener = new JSONTokener(json);
             JSONArray jsonArray = new JSONArray(jsonTokener);
             alumnes = new Alumne[jsonArray.length()];
+
             for (int i=0; i<alumnes.length; i++){
                 JSONObject jsonAlumne = jsonArray.getJSONObject(i);
                 int nia = jsonAlumne.getInt("nia");
@@ -68,5 +70,16 @@ public class AlumneParser {
 
     public Alumne[] getAlumnes(){
         return alumnes;
+    }
+
+    public String getNomAssignatura(String codAssig){
+        String nom = null;
+        for (int i=0; i<asignatures.length; i++){
+            if (asignatures[i].getCodAssignatura().equals(codAssig)){
+                nom = asignatures[i].getNomAssignatura();
+                return nom;
+            }
+        }
+        return nom;
     }
 }

@@ -12,7 +12,6 @@ import com.carlesramos.notasaalumnos.modelo.Alumne;
 public class MainActivity extends AppCompatActivity implements IAlumneListener {
     public static final String EXTRA_TEXTO = "com.carlesramos.notasalumnos.EXTRA_TEXTO";
     private FragmentListado frgListado;
-    private TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
