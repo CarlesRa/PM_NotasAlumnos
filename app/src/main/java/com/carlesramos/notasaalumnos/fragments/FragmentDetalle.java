@@ -15,8 +15,6 @@ import com.carlesramos.notasaalumnos.modelo.Alumne;
 import com.carlesramos.notasaalumnos.modelo.Assignatura;
 import com.carlesramos.notasaalumnos.modelo.Calificacion;
 import com.carlesramos.notasaalumnos.parsers.AlumneParser;
-import com.carlesramos.notasaalumnos.parsers.AssignaturaParser;
-
 import java.util.ArrayList;
 
 public class FragmentDetalle extends Fragment {
@@ -29,18 +27,9 @@ public class FragmentDetalle extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         calificaciones = new ArrayList<>();
-        AssignaturaParser parserAssig = new AssignaturaParser(getActivity());
         AlumneParser parser = new AlumneParser(getActivity());
         if (parser.parse()){
-            this.alumnes = parser.getAlumnes();
-            for (Alumne a : alumnes){
-                for (int i=0; i<a.getCalificaciones().size(); i++){
-                    calificaciones.add(a.getCalificaciones().get(i));
-                }
-            }
-        }
-        if (parserAssig.parse()){
-            this.assignaturas = parserAssig.getAsignatures();
+            this.calificaciones = parser.getCalificaciones();
         }
         return inflater.inflate(R.layout.fragment_detalle,container,false);
     }

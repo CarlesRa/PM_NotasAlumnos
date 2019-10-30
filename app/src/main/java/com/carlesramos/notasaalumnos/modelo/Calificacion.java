@@ -7,9 +7,9 @@ public class Calificacion {
     private String nomAssignatura;
     private double notaAlumno;
 
-    public Calificacion(String codAssignatura, String nomAssignatura, double notaAlumno) {
+    public Calificacion(String codAssignatura, double notaAlumno) {
         this.codAssignatura = codAssignatura;
-        this.nomAssignatura = nomAssignatura;
+        this.nomAssignatura = nombreAssig();
         this.notaAlumno = notaAlumno;
     }
 
@@ -23,5 +23,43 @@ public class Calificacion {
 
     public double getNotaAlumno() {
         return notaAlumno;
+    }
+
+    private String nombreAssig(){
+        String nombre;
+        switch (this.codAssignatura){
+            case "AAD":{
+                nombre = "Acceso a base de datos";
+                break;
+            }
+            case "DDI":{
+                nombre = "Desarrollo de interfaces";
+                break;
+            }
+            case "PMDM":{
+                nombre = "Programación multimedia y dispositivos móviles";
+            }
+            case "PSP":{
+                nombre = "Progroamación de servicios y procesos";
+                break;
+            }
+            case "SGE":{
+                nombre = "Sistemas de gestión empresarial";
+                break;
+            }
+            case "EIE":{
+                nombre = "Empresa e iniciativa emprendedora";
+                break;
+            }
+            case "ANG":{
+                nombre = "Inglés técnico";
+                break;
+            }
+            default: {
+                nombre = "";
+                break;
+            }
+        }
+        return nombre;
     }
 }

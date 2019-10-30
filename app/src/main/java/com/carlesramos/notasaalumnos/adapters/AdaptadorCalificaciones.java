@@ -22,9 +22,9 @@ public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalif
 
     @NonNull
     @Override
-    public CalificacionesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.listitem_notas,parent,false);
+    public CalificacionesViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        final View itemView = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.listitem_notas, viewGroup,false);
         return new CalificacionesViewHolder(itemView);
     }
 
@@ -50,15 +50,15 @@ public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalif
         public CalificacionesViewHolder(@NonNull View itemView) {
             super(itemView);
             tvCodAsig = itemView.findViewById(R.id.tvCodAsig);
-            tvNomAsig = itemView.findViewById(R.id.tvCodAsig);
-            tvNota = itemView.findViewById(R.id.tvNota);
+            tvNomAsig = itemView.findViewById(R.id.tvNomAsig);
+            tvNota = itemView.findViewById(R.id.tvNotaAssig);
         }
-        //TODO aqui esta el problema la calificacion llega nula.
+
         public void bindCalificaciones(Calificacion c){
 
             tvCodAsig.setText(c.getCodAssignatura());
             tvNomAsig.setText(c.getNomAssignatura());
-            tvNomAsig.setText(String.valueOf(c.getNotaAlumno()));
+            tvNota.setText(String.valueOf(c.getNotaAlumno()));
         }
 
 
