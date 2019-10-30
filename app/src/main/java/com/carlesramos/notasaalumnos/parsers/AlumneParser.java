@@ -51,7 +51,7 @@ public class AlumneParser {
                     JSONObject jsonNotas = jsonArrayNotas.getJSONObject(z);
                     double nota = jsonNotas.getDouble("calificacion");
                     String codAsig = jsonNotas.getString("codAsig");
-                    calificaciones.add(new Calificacion(codAsig,nota));
+                    calificaciones.add(new Calificacion(codAsig, nota));
                 }
                 alumnes[i] = new Alumne(nia,nombre,apellido1,apellido2,
                         fechaNac,email,calificaciones);

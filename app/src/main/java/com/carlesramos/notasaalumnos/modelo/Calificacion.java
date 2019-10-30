@@ -38,6 +38,7 @@ public class Calificacion implements Serializable{
             }
             case "PMDM":{
                 nombre = "Programación multimedia y dispositivos móviles";
+                break;
             }
             case "PSP":{
                 nombre = "Progroamación de servicios y procesos";
