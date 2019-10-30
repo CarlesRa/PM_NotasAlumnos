@@ -15,8 +15,9 @@
 
     <fragment
         android:id="@+id/frgDetalle"
-        android:name="com.carlesramos.notasaalumnos.fragments.FragmentListado"
+        android:name="com.carlesramos.notasaalumnos.fragments.FragmentDetalle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
+
 </LinearLayout>

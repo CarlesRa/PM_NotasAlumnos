@@ -10,11 +10,13 @@ import com.carlesramos.notasaalumnos.IAlumneListener;
 import com.carlesramos.notasaalumnos.R;
 import com.carlesramos.notasaalumnos.modelo.Calificacion;
 
+import java.util.ArrayList;
+
 
 public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalificaciones.CalificacionesViewHolder> {
-    private Calificacion[]calificaciones;
+    private ArrayList<Calificacion>calificaciones;
 
-    public AdaptadorCalificaciones(Calificacion[] calificaciones) {
+    public AdaptadorCalificaciones(ArrayList<Calificacion> calificaciones) {
         this.calificaciones = calificaciones;
     }
 
@@ -28,14 +30,14 @@ public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalif
 
     @Override
     public void onBindViewHolder(@NonNull CalificacionesViewHolder holder, int position) {
-        Calificacion calificacion = calificaciones[position];
+        Calificacion calificacion = calificaciones.get(position);
         holder.bindCalificaciones(calificacion);
 
     }
 
     @Override
     public int getItemCount() {
-        return calificaciones.length;
+        return calificaciones.size();
     }
 
     public static class CalificacionesViewHolder extends RecyclerView.ViewHolder{
@@ -51,7 +53,7 @@ public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalif
             tvNomAsig = itemView.findViewById(R.id.tvCodAsig);
             tvNota = itemView.findViewById(R.id.tvNota);
         }
-
+        //TODO aqui esta el problema la calificacion llega nula.
         public void bindCalificaciones(Calificacion c){
 
             tvCodAsig.setText(c.getCodAssignatura());

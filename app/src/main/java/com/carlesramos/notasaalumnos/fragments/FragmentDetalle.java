@@ -12,22 +12,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.carlesramos.notasaalumnos.R;
 import com.carlesramos.notasaalumnos.adapters.AdaptadorCalificaciones;
 import com.carlesramos.notasaalumnos.modelo.Alumne;
+import com.carlesramos.notasaalumnos.modelo.Assignatura;
 import com.carlesramos.notasaalumnos.modelo.Calificacion;
 import com.carlesramos.notasaalumnos.parsers.AlumneParser;
+import com.carlesramos.notasaalumnos.parsers.AssignaturaParser;
+
+import java.util.ArrayList;
 
 public class FragmentDetalle extends Fragment {
     private Alumne[] alumnes;
-    private Calificacion[] calificaciones;
+    private Assignatura[] assignaturas;
+    private ArrayList<Calificacion> calificaciones;
     private RecyclerView rvClasificaciones;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        calificaciones = new ArrayList<>();
+        AssignaturaParser parserAssig = new AssignaturaParser(getActivity());
         AlumneParser parser = new AlumneParser(getActivity());
         if (parser.parse()){
             this.alumnes = parser.getAlumnes();
-            calificaciones = new Calificacion[alumnes.length];
+            for (Alumne a : alumnes){
+                for (int i=0; i<a.getCalificaciones().size(); i++){
+                    calificaciones.add(a.getCalificaciones().get(i));
+                }
+            }
+        }
+        if (parserAssig.parse()){
+            this.assignaturas = parserAssig.getAsignatures();
         }
         return inflater.inflate(R.layout.fragment_detalle,container,false);
     }
@@ -40,7 +53,7 @@ public class FragmentDetalle extends Fragment {
         rvClasificaciones.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
     }
 
-    public Calificacion[] getCalificaciones(){
+    public ArrayList<Calificacion> getCalificaciones(){
         return calificaciones;
     }
 }
