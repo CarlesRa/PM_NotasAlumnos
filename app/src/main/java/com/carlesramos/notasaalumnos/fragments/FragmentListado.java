@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.carlesramos.notasaalumnos.IAlumneListener;
+import com.carlesramos.notasaalumnos.interfaces.IAlumneListener;
 import com.carlesramos.notasaalumnos.R;
 import com.carlesramos.notasaalumnos.adapters.AdaptadorAlumnes;
 import com.carlesramos.notasaalumnos.modelo.Alumne;
