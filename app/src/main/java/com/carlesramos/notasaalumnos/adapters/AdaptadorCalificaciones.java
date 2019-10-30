@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.carlesramos.notasaalumnos.interfaces.IAlumneListener;
 import com.carlesramos.notasaalumnos.R;
 import com.carlesramos.notasaalumnos.modelo.Calificacion;
-
 import java.util.ArrayList;
-
 
 public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalificaciones.CalificacionesViewHolder> {
     private ArrayList<Calificacion>calificaciones;

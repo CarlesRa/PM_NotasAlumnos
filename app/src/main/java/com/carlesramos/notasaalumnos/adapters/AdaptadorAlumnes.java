@@ -4,10 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.carlesramos.notasaalumnos.interfaces.IAlumneListener;
 import com.carlesramos.notasaalumnos.R;
 import com.carlesramos.notasaalumnos.modelo.Alumne;
@@ -70,8 +68,8 @@ public class AdaptadorAlumnes extends RecyclerView.Adapter<AdaptadorAlumnes.Alum
 
         @Override
         public void onClick(View v) {
-            if (listener != null){
-                listener.onAlumnoSelected(getAdapterPosition());
+            if (this.listener != null){
+                this.listener.onAlumnoSelected(getAdapterPosition());
             }
         }
     }

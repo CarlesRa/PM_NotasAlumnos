@@ -29,20 +29,19 @@ public class FragmentDetalle extends Fragment {
         calificaciones = new ArrayList<>();
         AlumneParser parser = new AlumneParser(getActivity());
         if (parser.parse()){
-            this.calificaciones = parser.getCalificaciones();
+            alumnes = parser.getAlumnes();
         }
         return inflater.inflate(R.layout.fragment_detalle,container,false);
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public ArrayList<Calificacion> getCalificaciones(){
+        return calificaciones;
+    }
+    public void mostrarDetalle(Alumne a){
+       // this.calificaciones = alumnes[].getCalificaciones();
+        this.calificaciones = a.getCalificaciones();
         rvClasificaciones = getView().findViewById(R.id.rvDetalle);
         rvClasificaciones.setAdapter(new AdaptadorCalificaciones(calificaciones));
         rvClasificaciones.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
-    }
-
-    public ArrayList<Calificacion> getCalificaciones(){
-        return calificaciones;
     }
 }

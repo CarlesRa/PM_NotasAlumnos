@@ -5,7 +5,7 @@ import com.carlesramos.notasaalumnos.utils.Lib;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Alumne {
+public class Alumne implements Serializable{
     private int nia;
     private String nom;
     private String apellido1;

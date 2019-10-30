@@ -1,6 +1,8 @@
 package com.carlesramos.notasaalumnos.modelo;
 
-public class Assignatura {
+import java.io.Serializable;
+
+public class Assignatura implements Serializable {
     private String codAssignatura;
     private String nomAssignatura;
 

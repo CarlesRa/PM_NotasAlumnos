@@ -25,11 +25,9 @@ public class AlumneParser {
 
         boolean parsed = false;
         String json;
-        //alumnes = null;
-        calificaciones = null;
 
         try {
-            //alumnes
+            //alumne
             int size = alumnesFile.available();
             byte[] buffer = new byte[size];
             alumnesFile.read(buffer);
@@ -70,9 +68,5 @@ public class AlumneParser {
 
     public Alumne[] getAlumnes(){
         return alumnes;
-    }
-
-    public ArrayList<Calificacion> getCalificaciones() {
-        return calificaciones;
     }
 }

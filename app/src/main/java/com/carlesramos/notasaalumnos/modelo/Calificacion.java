@@ -2,7 +2,7 @@ package com.carlesramos.notasaalumnos.modelo;
 
 import java.io.Serializable;
 
-public class Calificacion {
+public class Calificacion implements Serializable{
     private String codAssignatura;
     private String nomAssignatura;
     private double notaAlumno;
