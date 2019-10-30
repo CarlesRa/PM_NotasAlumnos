@@ -6,9 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.carlesramos.notasaalumnos.interfaces.IAlumneListener;
 import com.carlesramos.notasaalumnos.R;
-import com.carlesramos.notasaalumnos.modelo.Alumne;
 import com.carlesramos.notasaalumnos.modelo.Calificacion;
 import java.util.ArrayList;
 
@@ -43,7 +41,6 @@ public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalif
         private TextView tvCodAsig;
         private TextView tvNomAsig;
         private TextView tvNota;
-        private IAlumneListener listener;
 
 
         public CalificacionesViewHolder(@NonNull View itemView) {

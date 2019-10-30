@@ -3,7 +3,6 @@ package com.carlesramos.notasaalumnos;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 import com.carlesramos.notasaalumnos.fragments.FragmentDetalle;
 import com.carlesramos.notasaalumnos.fragments.FragmentListado;
 import com.carlesramos.notasaalumnos.interfaces.IAlumneListener;
