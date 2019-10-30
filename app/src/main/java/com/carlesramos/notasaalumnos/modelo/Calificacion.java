@@ -1,5 +1,7 @@
 package com.carlesramos.notasaalumnos.modelo;
 
+import java.io.Serializable;
+
 public class Calificacion {
     private String codAssignatura;
     private String nomAssignatura;

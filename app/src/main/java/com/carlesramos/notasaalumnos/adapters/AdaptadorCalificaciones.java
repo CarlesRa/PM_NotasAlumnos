@@ -8,14 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.carlesramos.notasaalumnos.IAlumneListener;
 import com.carlesramos.notasaalumnos.R;
-import com.carlesramos.notasaalumnos.modelo.Assignatura;
 import com.carlesramos.notasaalumnos.modelo.Calificacion;
 
 
 public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalificaciones.CalificacionesViewHolder> {
     private Calificacion[]calificaciones;
 
-    public AdaptadorCalificaciones(Calificacion[] calificaciones, Assignatura[] assignatures) {
+    public AdaptadorCalificaciones(Calificacion[] calificaciones) {
         this.calificaciones = calificaciones;
     }
 
@@ -24,7 +23,7 @@ public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalif
     public CalificacionesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.listitem_notas,parent,false);
-        return new CalificacionesViewHolder(itemView, calificaciones);
+        return new CalificacionesViewHolder(itemView);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class AdaptadorCalificaciones extends RecyclerView.Adapter<AdaptadorCalif
         private IAlumneListener listener;
 
 
-        public CalificacionesViewHolder(@NonNull View itemView, Calificacion[] calificaciones) {
+        public CalificacionesViewHolder(@NonNull View itemView) {
             super(itemView);
             tvCodAsig = itemView.findViewById(R.id.tvCodAsig);
             tvNomAsig = itemView.findViewById(R.id.tvCodAsig);

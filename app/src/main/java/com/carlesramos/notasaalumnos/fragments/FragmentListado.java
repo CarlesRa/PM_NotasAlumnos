@@ -27,6 +27,7 @@ public class FragmentListado extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         AlumneParser parser = new AlumneParser(getActivity());
         if (parser.parse()){
+        parser.parse();
             this.alumnes = parser.getAlumnes();
         }
         return inflater.inflate(R.layout.fragment_listado, container, false);

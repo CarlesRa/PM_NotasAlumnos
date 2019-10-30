@@ -3,7 +3,6 @@ package com.carlesramos.notasaalumnos.parsers;
 import android.content.Context;
 import com.carlesramos.notasaalumnos.R;
 import com.carlesramos.notasaalumnos.modelo.Alumne;
-import com.carlesramos.notasaalumnos.modelo.Assignatura;
 import com.carlesramos.notasaalumnos.modelo.Calificacion;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,11 +10,11 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class AlumneParser {
     private Alumne[] alumnes;
-    private Calificacion[] calificaciones;
-    private Assignatura[] assignatures;
+    private ArrayList<Calificacion> calificaciones;
     private InputStream alumnesFile;
 
     public AlumneParser(Context c) {
@@ -26,8 +25,7 @@ public class AlumneParser {
 
         boolean parsed = false;
         String json;
-        alumnes = null;
-        assignatures = null;
+        //alumnes = null;
         calificaciones = null;
 
         try {
@@ -46,16 +44,17 @@ public class AlumneParser {
                 String nombre = jsonAlumne.getString("nombre");
                 String apellido1 = jsonAlumne.getString("apellido1");
                 String apellido2 = jsonAlumne.getString("apellido2");
-                String fechaNac = jsonAlumne.getString("fechanacimiento");
+                String fechaNac = jsonAlumne.getString("fechaNacimiento");
                 String email = jsonAlumne.getString("email");
                 JSONArray jsonArrayNotas = jsonAlumne.getJSONArray("notas");
+                calificaciones = new ArrayList<>();
                 //recorrem les calificacions
                 for (int z=0; z<jsonArrayNotas.length(); z++){
 
                     JSONObject jsonNotas = jsonArrayNotas.getJSONObject(z);
                     double nota = jsonNotas.getDouble("calificacion");
                     String codAsig = jsonNotas.getString("codAsig");
-                    calificaciones[i] = new Calificacion(codAsig,nombre,nota);
+                    calificaciones.add(new Calificacion(codAsig,nombre,nota));
                 }
                 alumnes[i] = new Alumne(nia,nombre,apellido1,apellido2,
                         fechaNac,email,calificaciones);
@@ -74,16 +73,4 @@ public class AlumneParser {
         return alumnes;
     }
 
-    public int posicionAssignatura(String codAsig){
-        int posicion = 0;
-
-        for (int i=0; i<assignatures.length; i++){
-            if(assignatures[i].getCodAssignatura().equals(codAsig)){
-                posicion = i;
-                return posicion;
-            }
-        }
-
-        return posicion;
-    }
 }

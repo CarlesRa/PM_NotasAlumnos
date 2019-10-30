@@ -3,8 +3,9 @@ package com.carlesramos.notasaalumnos.modelo;
 import com.carlesramos.notasaalumnos.utils.Lib;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Alumne implements Serializable {
+public class Alumne {
     private int nia;
     private String nom;
     private String apellido1;
@@ -12,10 +13,10 @@ public class Alumne implements Serializable {
     private String fechaNac;
     private int edad;
     private String email;
-    private Calificacion[] calificaciones;
+    private ArrayList<Calificacion> calificaciones;
 
     public Alumne(int nia, String nom, String apellido1, String apellido2, String fechaNac
-            , String email, Calificacion[] calificaciones) {
+            , String email, ArrayList<Calificacion> calificaciones) {
         this.nia = nia;
         this.nom = nom;
         this.apellido1 = apellido1;
@@ -54,7 +55,7 @@ public class Alumne implements Serializable {
         return email;
     }
 
-    public Calificacion[] getCalificaciones(){
+    public ArrayList<Calificacion> getCalificaciones(){
         return calificaciones;
     }
 }
