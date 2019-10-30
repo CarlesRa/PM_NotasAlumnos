@@ -33,7 +33,6 @@ public class AlumneParser {
             int size = alumnesFile.available();
             byte[] buffer = new byte[size];
             alumnesFile.read(buffer);
-            alumnesFile.close();
             json = new String(buffer,"UTF-8");
             JSONTokener jsonTokener = new JSONTokener(json);
             JSONArray jsonArray = new JSONArray(jsonTokener);
